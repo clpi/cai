@@ -3,14 +3,36 @@ import { streamText } from "hono/streaming";
 import { renderer } from "./renderer";
 import { EventSourceParserStream } from "eventsource-parser/stream";
 import { Ai } from "@cloudflare/workers-types";
+import { EventContext } from "hono/cloudflare-pages";
+import { contextStorage } from 'hono/context-storage';
+import { logger } from "hono/logger";
+import { timeout } from "hono/timeout";
 
-type Bindings = {
+type Env = {
+  bindings: {
+  name: string;
+  eventContext: EventContext,
+  store: typeof contextStorage;
+  KV: KVNamespace;
   AI: Ai;
 };
+}
 
-const app = new Hono<{ Bindings: Bindings }>();
+
+const app = new Hono<{ Bindings: Env }>();
+app.use("/api", timeout(10000), logger())
 
 app.use(renderer);
+// app.use(logger())
+// app.use(contextStorage())
+
+app.get("/auth", (c) => {
+  return c.render(
+    <div>
+      <h1>Auth</h1>
+    </div>
+  )
+})
 
 app.get("/", (c) => {
   return c.render(
@@ -103,7 +125,7 @@ app.get("/", (c) => {
         </div>
       </div>
       <script src="/static/script.js"></script>
-    </>
+    </>,
   );
 });
 
@@ -123,7 +145,7 @@ app.post("/api/chat", async (c) => {
   const MAX_RETRIES = 3;
   while (successfulInference === false && retryCount < MAX_RETRIES) {
     try {
-      eventSourceStream = (await c.env.AI.run(payload.config.model, {
+      eventSourceStream = (await c.env.bindings.AI.run(payload.config.model, {
         messages,
         stream: true,
       })) as ReadableStream;
