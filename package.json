@@ -1,6 +1,6 @@
 {
   "name": "cai",
-  "packageManager": "npm@9.8.1",
+  "packageManager": "pnpm@9.1.0",
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm:preview\" \"npm:watch:vite\" \"npm:watch:css\"",
@@ -15,13 +15,14 @@
     "deploy": "$npm_execpath run b && wrangler pages deploy dist",
     "deploy:preview": "$npm_execpath run build && wrangler pages deploy dist -e preview",
     "deploy:min": "$npm_execpath run build && wrangler pages deploy dist --minify",
+    "test:watch": "vitest --watch",
     "types": "wrangler types"
   },
   "workers-sdk": {
     "deploy": true
   },
   "dependencies": {
-    "@auth/core": "^0.35.0",
+    "@auth/core": "^0.35.2",
     "@hono/auth-js": "^1.0.10",
     "@hono/event-emitter": "^2.0.0",
     "@hono/zod-validator": "^0.2.2",
@@ -30,41 +31,42 @@
     "fetch-event-source": "latest",
     "fetch-event-stream": "latest",
     "hono": "^4.6.3",
-    "honox": "^0.1.24",
+    "honox": "^0.1.25",
     "mime": "^4.0.4",
-    "moustache": "^0.0.4",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "swr": "^2.2.5",
     "turbo": "latest",
+    "ui": "^0.2.4",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@cloudflare/ai-utils": "latest",
+    "@cloudflare/kv-asset-handler": "^0.3.4",
     "@cloudflare/workers-shared": "^0.5.4",
-    "@cloudflare/workers-types": "^4.20240208.0",
-    "@hono/vite-cloudflare-pages": "^0.2.4",
+    "@cloudflare/workers-types": "^4.20240925.0",
+    "@hono/vite-cloudflare-pages": "^0.2.5",
     "@hono/vite-dev-server": "^0.9.0",
+    "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "latest",
     "@types/common-tags": "^1.8.4",
-    "@types/mime": "^4.0.0",
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.19",
+    "autoprefixer": "^10.4.20",
     "cloudflare": "latest",
     "concurrently": "^8.2.2",
     "cookie": "^0.6.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.47",
     "promjs": "^0.4.2",
     "react-icons": "^5.3.0",
     "tailwindcss": "latest",
     "toucan-js": "^4.0.0",
     "undici": "^6.19.8",
-    "vite": "^5.0.12",
+    "vite": "^5.4.8",
     "vitest": "^2.1.1",
-    "wrangler": "^3.65.1"
+    "wrangler": "^3.78.10"
   }
 }

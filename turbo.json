@@ -1,32 +1,44 @@
 {
-	"$schema": "http://turbo.build/schema.json",
-  "globalEnv": [
-    "NODE_ENV=production",
-  ],
-  // ui": "stream",
+  "$schema": "http://turbo.build/schema.json",
+  "globalEnv": ["NODE_ENV=production"],
+  "ui": "stream",
   "daemon": false,
   "remoteCache": {
-      "signature": false,
-      "enabled": false
+    "signature": false,
+    "enabled": false
   },
-"tasks": {
-      "devel": {
-          "persistent": true,
-          "cache": false
-      },
-  "build": {
-    "outputs": ["dist/**"],
-          "dependsOn": ["^build"],
-          "env": [
-          ]
-  },
-      "test": {
-          "persistent": true,
-          "cache": false
-
-      },
-      "pub": {
-          "dependsOn": ["build"]
-      }
+  "dangerouslyDisablePackageManagerCheck": false,
+  "cacheDir": ".turbo/cache",
+  "envMode": "strict",
+  "globalDependencies": [],
+  "globalPassThroughEnv": [],
+  "tasks": {
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "build:css": {
+      "persistent": true,
+      "cache": false,
+      "outputs": ["src/style.css"],
+      "dependsOn": []
+    },
+    "preview": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["css"],
+      "env": []
+    },
+    "deploy": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["build"],
+      "env": []
+    },
+    "test": {
+      "persistent": true,
+      "cache": false
+    },
+    "pub": {
+      "dependsOn": ["build"]
+    }
   }
 }

@@ -3,7 +3,10 @@ import { streamText } from "hono/streaming";
 import { renderer } from "./renderer";
 import { EventSourceParserStream } from "eventsource-parser/stream";
 import { Ai } from "@cloudflare/workers-types";
-import { getAssetFromKV, serveSinglePageApp,  } from "@cloudflare/kv-asset-handler"
+import {
+  getAssetFromKV,
+  serveSinglePageApp,
+} from "@cloudflare/kv-asset-handler";
 import { R2Bucket, D1Database } from "@cloudflare/workers-types";
 
 type Bindings = {
@@ -17,7 +20,7 @@ app.use(renderer);
 app.get("/", (c) => {
   return c.render(
     <>
-    <title>ill.st</title>
+      <title>ill.st</title>
       <div className="flex h-screen bg-gray-200">
         <div
           className="flex-grow flex flex-col"
@@ -91,17 +94,14 @@ app.get("/", (c) => {
           </div>
           <div className="mt-4 text-center text-sm text-gray-500 flex items-center justify-center">
             <span className="mr-2 pt-2">ill.st</span>
-            <a
-              href="https://ill.st"
-              target="_blank"
-            >
+            <a href="https://ill.st" target="_blank">
               ill.st
             </a>
           </div>
         </div>
       </div>
       <script src="/static/script.js"></script>
-    </>,
+    </>
   );
 });
 

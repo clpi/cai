@@ -1,8 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./src/**/*.{js,ts,jsx,tsx}", 
-            "./src/*.{js,ts,jsx,tsx}", 
-          "./public/static/*.js"],
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/*.{js,ts,jsx,tsx}",
+    "./public/static/*.js",
+  ],
+
+  plugins: [
+    require("@tailwindcss/typography")({
+      className: "chat",
+    }),
+    require("@tailwindcss/forms"),
+  ],
   theme: {
     extend: {
       fontFamily: {
