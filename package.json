@@ -1,10 +1,13 @@
 {
+  "name": "cai",
   "type": "module",
+  "packageManager": "npm@9.8.1",
   "scripts": {
     "dev": "concurrently \"npm:preview\" \"npm:watch:vite\" \"npm:watch:css\"",
     "watch:vite": "vite build --watch",
     "watch:css": "tailwindcss -i src/style.css -o public/static/style.css --watch",
     "build": "$npm_execpath run build:css && vite build",
+    "wb": "wrangler build",
     "build:css": "tailwindcss -i src/style.css -o public/static/style.css",
     "preview": "wrangler pages dev --live-reload dist",
     "deploy": "$npm_execpath run build && wrangler pages deploy dist",
@@ -12,30 +15,38 @@
     "deploy:min": "$npm_execpath run build && wrangler pages deploy dist --minify",
     "types": "wrangler types"
   },
+  "workers-sdk": {
+    "deploy": true
+  },
   "dependencies": {
     "@auth/core": "^0.35.0",
     "@hono/auth-js": "^1.0.10",
     "@hono/event-emitter": "^2.0.0",
     "@hono/zod-validator": "^0.2.2",
-    "@tailwindcss/typography": "^0.5.15",
     "common-tags": "^1.8.2",
     "eventsource-parser": "^1.1.2",
     "fetch-event-source": "latest",
     "fetch-event-stream": "latest",
     "hono": "^4.6.3",
     "honox": "^0.1.24",
+    "mime": "^4.0.4",
+    "moustache": "^0.0.4",
     "next": "^14.2.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "swr": "^2.2.5",
+    "turbo": "latest",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@cloudflare/ai-utils": "latest",
+    "@cloudflare/workers-shared": "^0.5.4",
     "@cloudflare/workers-types": "^4.20240208.0",
     "@hono/vite-cloudflare-pages": "^0.2.4",
     "@hono/vite-dev-server": "^0.9.0",
+    "@tailwindcss/typography": "^0.5.15",
     "@types/common-tags": "^1.8.4",
+    "@types/mime": "^4.0.0",
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
     "@types/uuid": "^10.0.0",
@@ -47,7 +58,10 @@
     "postcss": "^8.4.38",
     "promjs": "^0.4.2",
     "tailwindcss": "^3.4.3",
+    "toucan-js": "^4.0.0",
+    "undici": "^6.19.8",
     "vite": "^5.0.12",
+    "vitest": "^2.1.1",
     "wrangler": "^3.65.1"
   }
 }
