@@ -1,11 +1,32 @@
 {
 	"$schema": "http://turbo.build/schema.json",
-	"extends": ["//"],
-	"tasks": {
-		"build": {
-			"outputs": ["dist/**"],
-            "env": [
-            ]
-		}
-	}
+  "globalEnv": [
+    "NODE_ENV=production",
+  ],
+  // ui": "stream",
+  "daemon": false,
+  "remoteCache": {
+      "signature": false,
+      "enabled": false
+  },
+"tasks": {
+      "devel": {
+          "persistent": true,
+          "cache": false
+      },
+  "build": {
+    "outputs": ["dist/**"],
+          "dependsOn": ["^build"],
+          "env": [
+          ]
+  },
+      "test": {
+          "persistent": true,
+          "cache": false
+
+      },
+      "pub": {
+          "dependsOn": ["build"]
+      }
+  }
 }
