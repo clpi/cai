@@ -17,6 +17,7 @@ app.use(renderer);
 app.get("/", (c) => {
   return c.render(
     <>
+    <title>ill.st</title>
       <div className="flex h-screen bg-gray-200">
         <div
           className="flex-grow flex flex-col"
@@ -52,10 +53,9 @@ app.get("/", (c) => {
         <div className="w-80 bg-chat-settings p-6 shadow-xl flex flex-col justify-between">
           <div>
             <div className="mb-4">
-              <h2 className="text-xl font-semibold">Chat Settings</h2>
+              <h2 className="text-xl font-semibold">ill.st</h2>
               <p className="text-sm text-chat-helpertext mt-1">
-                Try out different models and configurations for your chat
-                application
+                Try out different models!
               </p>
             </div>
             <form>
@@ -90,16 +90,12 @@ app.get("/", (c) => {
             </form>
           </div>
           <div className="mt-4 text-center text-sm text-gray-500 flex items-center justify-center">
-            <span className="mr-2 pt-2">Powered by</span>
+            <span className="mr-2 pt-2">ill.st</span>
             <a
-              href="https://developers.cloudflare.com/workers-ai/"
+              href="https://ill.st"
               target="_blank"
             >
-              <img
-                src="/static/cloudflare-logo.png"
-                alt="Cloudflare Logo"
-                className="h-6 inline"
-              />
+              ill.st
             </a>
           </div>
         </div>
