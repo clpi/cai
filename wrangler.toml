@@ -10,11 +10,11 @@ compatibility_date = "2024-06-01"
 [ai]
 binding = "AI"
 
-[env.preview.vars]
-token = "cjmscjms"
+# [env.preview.vars]
+# token = "cjmscjms"
 
-[env.production.vars]
-token = "cjmscjms"
+# [env.production.vars]
+# token = "cjmscjms"
 
 # [triggers]
 # crons = ["* * * * *"]
