@@ -3,6 +3,8 @@ import { streamText } from "hono/streaming";
 import { renderer } from "./renderer";
 import { EventSourceParserStream } from "eventsource-parser/stream";
 import { Ai } from "@cloudflare/workers-types";
+import { getAssetFromKV, serveSinglePageApp,  } from "@cloudflare/kv-asset-handler"
+import { R2Bucket, D1Database } from "@cloudflare/workers-types";
 
 type Bindings = {
   AI: Ai;

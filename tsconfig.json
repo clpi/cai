@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
+    "noEmit": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "Bundler",
     "strict": true,
     "lib": [

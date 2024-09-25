@@ -4,6 +4,10 @@ import build from "@hono/vite-cloudflare-pages";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  build: {
+    target: "esnext",
+    minify: false,
+  },
   plugins: [
     devServer({
       entry: "src/index.tsx",

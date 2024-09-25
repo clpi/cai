@@ -2,6 +2,55 @@
 name = "cai"
 pages_build_output_dir = "./dist"
 compatibility_date = "2024-06-01"
+# workers_dev = true
+
+[define]
+
 
 [ai]
 binding = "AI"
+
+[env.preview.vars]
+token = "cjmscjms"
+
+[env.production.vars]
+token = "cjmscjms"
+
+# [triggers]
+# crons = ["* * * * *"]
+
+# [[rules]]
+# type = "Data"
+# globs = ["**/*.png"]
+
+[durable_objects]
+bindings = [
+    { name = "session", class_name = "Session", script_name = "Session" },
+    { name = "room", class_name = "Room", script_name = "Room" },
+    { name = "limiter", script_name = "Limiter",  class_name = "Limiter" },
+    { name = "user", class_name = "User", script_name = "User" },
+]
+
+[vars]
+token = "cjmscjms"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "cjdb"
+database_id = "2e3cbecd-890c-4590-8b55-6bbf2a9cc62b"
+# [[migrations]]
+# tag = "v0"
+# new_classes = ["Room", "Limiter", "User"]
+
+[[r2_buckets]]
+binding = "cjb"
+bucket_name = "cjb"
+preview_bucket_name = "cjb"
+
+[[kv_namespaces]]
+binding = "ckv"
+id = "5842872229d74f85bf1e683ec2217782"
+preview_id = "5842872229d74f85bf1e683ec2217782"
+
+[placement]
+mode = "smart"
