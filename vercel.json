@@ -1,4 +1,7 @@
 {
+  "github": {
+    "silent": true
+  },
   "regions": ["sfo"],
   "headers": [
     {
@@ -15,4 +18,3 @@
   "builds": [],
   "routes": []
 }
-

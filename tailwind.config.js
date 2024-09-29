@@ -1,21 +1,53 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./src/**/*.{js,ts,jsx,tsx}",
     "./src/*.{js,ts,jsx,tsx}",
     "./public/static/*.js",
+    "./app/**/src/*.{tsx,ts,js,jsx}",
+    "./pkg/**/src/*.{tsx,ts,js,jsx}",
   ],
 
+  darkMode: ["class"],
   plugins: [
-    require("@tailwindcss/typography")({
-      className: "chat",
-    }),
+    require("tailwindcss-animate"),
+    require("@headlessui/tailwindcss"),
+    require("@tailwindcss/typography"),
+    require("@tailwindcss/aspect-ratio"), 
     require("@tailwindcss/forms"),
+
+    plugin(function ({ addVariant, e, postcss }) {
+      addVariant('firefox', ({ container, separator }) => {
+      const isFirefoxRule = postcss.atRule({
+        name: '-moz-document',
+        params: 'url-prefix()',
+      });
+      isFirefoxRule.append(container.nodes);
+      container.append(isFirefoxRule);
+      isFirefoxRule.walkRules((rule) => {
+        rule.selector = `.${e(
+        `firefox${separator}${rule.selector.slice(1)}`
+        )}`;
+      })
+    })}),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.bg-gradient-to-br': {
+          'background-image': 'linear-gradient(to bottom right, #3490dc, #6574cd)',
+        },
+      })
+    })
   ],
   theme: {
+    container: {
+      center: true,
+
+    },
     extend: {
       fontFamily: {
-        sans: ["Helvetica Neue", "Arial", "sans-serif"],
+        sans: ["Inter var", "Helvetica Neue", ...defaultTheme.fontFamily.sans],
       },
       boxShadow: {
         "shadow-up":
@@ -38,5 +70,4 @@ export default {
       },
     },
   },
-  plugins: [],
 };

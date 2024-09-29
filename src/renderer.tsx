@@ -1,4 +1,7 @@
 import { jsxRenderer } from "hono/jsx-renderer";
+import {Suspense, renderToReadableStream} from "hono/jsx/streaming"
+import { jsx, startTransition, startViewTransition, ReactElement, ReactNode, useLayoutEffect, useSyncExternalStore, useActionState, useInsertionEffect, useViewTransition, useTransition, createElement} from "hono/jsx"
+import { EventContext, handleMiddleware, serveStatic } from "hono/cloudflare-pages"
 import "./style.css";
 
 export const renderer = jsxRenderer(({ children, title }) => {
@@ -14,13 +17,13 @@ export const renderer = jsxRenderer(({ children, title }) => {
           crossorigin="anonymous"
           referrerpolicy="no-referrer"
         ></script>
-        <link
+        {/* <link 
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
           integrity="sha512-0aPQyyeZrWj9sCA46UlmWgKOP0mUipLQ6OZXu8l4IcAmD2u31EPEy9VcIMvl7SoAaKe8bLXZhYoMaE/in+gcgA=="
           crossorigin="anonymous"
           referrerpolicy="no-referrer"
-        />
+        /> */}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         {import.meta.env.PROD ? (
           <link href="/static/style.css" rel="stylesheet" />
@@ -28,7 +31,7 @@ export const renderer = jsxRenderer(({ children, title }) => {
           <link href="/src/style.css" rel="stylesheet" />
         )}
       </head>
-      <body className="font-sans">{children}</body>
+      <body className="">{children}</body>
     </html>
   );
 });

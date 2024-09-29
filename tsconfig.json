@@ -6,6 +6,10 @@
     "module": "ESNext",
     "noEmit": true,
     "isolatedModules": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Bundler",
     "strict": true,
